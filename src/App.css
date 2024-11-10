@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.bg-con{
+  background-image: url('/public/bg-img.jpg');
+  background-size: cover;
+  height: 100vh;
+}

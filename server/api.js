@@ -62,7 +62,7 @@ app.delete('/delete/:userId',(req,res)=>{
 app.get("/appointments/:id",(req,res)=>{
     mongoDb.connect(conString).then(cliObj=>{
         var databse = cliObj.db("todo-react");
-        databse.collection("appointmentsTbl").find({Appointment_id:parseInt(req.params.id)}).toArray().then(doc=>{
+        databse.collection("appointmentsTbl").find({UserId:req.params.id}).toArray().then(doc=>{
             console.log('got Appointment details');
             res.send(doc);
             res.end();
@@ -110,5 +110,5 @@ app.delete('/delete/:id',(req,res)=>{
     })
 })
 
-app.listen(5060)
-console.log("Server started : http://127.0.0.1:5060")
+app.listen(8080)
+console.log("Server started : http://127.0.0.1:8080")

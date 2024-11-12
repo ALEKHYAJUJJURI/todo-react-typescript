@@ -88,10 +88,23 @@ app.post("/add-appointment",(req,res)=>{
     })
 });
 
+
+app.get("/get-appointment/:id",(req,res)=>{
+    mongoDb.connect(conString).then(cliObj=>{
+        var databse = cliObj.db("todo-react");
+        databse.collection("appointmentsTbl").find({Appointment_id:parseInt(req.params.id)}).toArray().then(doc=>{
+            console.log('edited Appointment details');
+            res.send(doc);
+            res.end();
+        })
+
+    })
+}); 
+
 app.put('/edit-appointment/:id',(req,res)=>{
     mongoDb.connect(conString).then(cliObj=>{
         var databse = cliObj.db('todo-react');
-        databse.collection('appointmentsTbl').updateOne({Appointment_id:req.params.id},{$set:{Appointment_id:parseInt(req.body.Appointment_id),Title:req.body.Title,Description:req.body.Description,Date:new Date(req.body.Date),UserId:req.body.UserId}}).then(()=>{
+        databse.collection('appointmentsTbl').updateOne({Appointment_id:parseInt(req.params.id)},{$set:{Appointment_id:parseInt(req.body.Appointment_id),Title:req.body.Title,Description:req.body.Description,Date:new Date(req.body.Date),UserId:req.body.UserId}}).then(()=>{
             console.log("Appointment Updated Successfully");
         res.end();
         })
@@ -99,7 +112,7 @@ app.put('/edit-appointment/:id',(req,res)=>{
     })
 });
 
-app.delete('/delete/:id',(req,res)=>{
+app.delete('/delete-appointment/:id',(req,res)=>{
     mongoDb.connect(conString).then(cliObj=>{
         var databse = cliObj.db('todo-react')
         databse.collection('appointmentsTbl').deleteOne({Appointment_id:parseInt(req.params.id)}).then(()=>{

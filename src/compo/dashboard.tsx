@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Cookies, useCookies } from "react-cookie"
 import { Link, useNavigate } from "react-router-dom"
 import { AppointmentContract } from "../contracts/appointments"
+
 import axios from "axios"
 
 
@@ -34,16 +35,16 @@ export function Dashbosrd(){
            </div>
            <div className="d-flex flex-wrap">
           {
-            appointments?.map(item=>
+            appointments.map(item=>
                 <div key={item.Appointment_id} className="alert alert-success m-3 p-3 text-start rounded w-25">
                     <div>
                         <h2>{item.Title}</h2>
                         <p>{item.Description}</p>
                         <p>{item.Date.toString()}</p>
                     </div>
-                    <div className=" ">
-                        <button className="bi bi-pen-fill btn btn-warning"></button>
-                        <button className="bi bi-trash-fill btn btn-danger mx-2"></button>
+                    <div>
+                        <Link to={`/edit-appointment/${item.Appointment_id}`} className="bi bi-pen-fill btn btn-warning">Edit</Link>
+                        <Link to={`/delete-appointment/${item.Appointment_id}`} className="bi bi-trash-fill btn btn-danger mx-2">Remove</Link>
                         </div>
                 </div>
             )

@@ -11,6 +11,8 @@ import { UserLogin } from './compo/login';
 import { Dashbosrd } from './compo/dashboard';
 import { AddAppointments } from './compo/add-appointments';
 import { UserDashboard } from './compo/user-dashboard';
+import { EditAppointment } from './compo/edit-appointment';
+import { DeleteAppointment } from './compo/delete-appointment';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path='/dashboard' element={<Dashbosrd/>}/>
         <Route path='/add-appointment' element={<AddAppointments/>}/>
         <Route path='/user-dashboard' element={<UserDashboard/>} />
+        <Route path='/edit-appointment/:id' element={<EditAppointment/>}/>
+        <Route path='/delete-appointment/:id' element={<DeleteAppointment/>} />
       </Routes>
       </BrowserRouter>
     </div>
